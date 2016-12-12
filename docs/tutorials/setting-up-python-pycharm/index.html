@@ -1,0 +1,505 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Setting Up a Python Development Environment with PyCharm</title>
+    
+    <!-- Description content not available -->
+    
+    <link rel="alternate" type="application/atom+xml" href="/ev3dev.github.io/news/atom.xml" title="Atom feed">
+    <link rel="icon" href="/ev3dev.github.io/favicon.ico" />
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/ev3dev.github.io/stylesheets/bootstrap.css">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/ev3dev.github.io/stylesheets/site-structure.css">
+    <link rel="stylesheet" href="/ev3dev.github.io/stylesheets/landing-content.css">
+
+    <!-- Template for search results -->
+    <script type="text/html" id="search-result-template">
+        <div class="search-result">
+            <a data-href="href"><h4 data-content="title"></h4></a>
+            <span data-content="breadcrumbs" class="search-result-breadcrumbs"></span>
+            <span data-content="author" class="search-result-author"></span><br/>
+        </div>
+    </script>
+
+    
+
+    
+        <!-- Google Analytics excluded: not an official site build -->
+    
+</head>
+
+
+<body class="no-jumbotron ">
+
+    <div id="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/ev3dev.github.io/">
+                    <img id="brand-logo" src="/ev3dev.github.io/images/ev3dev_logo_white.png" alt="ev3dev logo" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav" id="main-nav">
+                    <li>
+                        <a href="/ev3dev.github.io/docs/getting-started" title="Our Getting Started guide">Start Here</a>
+                    </li>
+                    <li>
+                        <a href="/ev3dev.github.io/download" title="SD card images for ev3dev">Downloads</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" title="Documentation on using ev3dev">
+                            Documentation
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/ev3dev.github.io/docs/tutorials">Tutorials</a>
+                            </li>
+                            <li>
+                                <a href="/ev3dev.github.io/docs/programming-languages">Programming Languages</a>
+                            </li>
+                            <li>
+                                <a href="/ev3dev.github.io/docs/networking">Networking</a>
+                            </li>
+                            <li>
+                                <a href="/ev3dev.github.io/docs/driver-overview">Hardware Drivers</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="/ev3dev.github.io/docs">More...</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/ev3dev.github.io/support" title="Get Help with ev3dev">Support</a>
+                    </li>
+                    <li>
+                        <a href="/ev3dev.github.io/news" title="ev3dev news">News</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Community
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/ev3dev.github.io/contribute" title="How to contribute to ev3dev">Contribute</a>
+                            </li>
+                            <li>
+                                <a href="/ev3dev.github.io/share" title="Share the word on ev3dev with others">Share</a>
+                            </li>
+                            <li>
+                                <a href="/ev3dev.github.io/projects" title="Discover projects that use ev3dev">Project showcase</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- items below float right, so appear in reverse order -->
+                <div id="search-container">
+                    <form class="navbar-form navbar-right dropdown" onsubmit="return false;">
+                        <input type="text" id="search-input" class="form-control" placeholder="Quick nav" autocomplete="off" />
+                        <div class="dropdown-menu" id="search-dropdown">
+                            <div class="search-results-container" id="search-results-docs">
+                                <h2>In docs</h2>
+                                <div data-content="docs-results">
+                                    <div class="no-results-note">No results</div>
+                                </div>
+                            </div>
+
+                            <div class="search-results-container" id="search-results-projects">
+                                <h2>In projects</h2>
+                                <div data-content="project-results">
+                                    <div class="no-results-note">No results</div>
+                                </div>
+                            </div>
+
+                            <div class="search-results-container" id="search-results-news">
+                                <h2>In news</h2>
+                                <div data-content="news-results">
+                                    <div class="no-results-note">No results</div>
+                                </div>
+                            </div>
+
+                            <div class="search-results-container" id="search-results-misc">
+                                <h2>In other pages</h2>
+                                <div data-content="misc-results">
+                                    <div class="no-results-note">No results</div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+    
+    
+    <div class="container">
+        
+
+<div class="page-header">
+    
+        <a class="btn btn-primary pull-right" href="https://github.com/ev3dev/ev3dev.github.io/edit/master/docs/tutorials/setting-up-python-pycharm.md"><span class="glyphicon glyphicon-pencil"></span> Edit on Github</a>
+    
+    <h1>
+        Setting Up a Python Development Environment with PyCharm
+        <small></small>
+    </h1>
+</div>
+    </div>
+    
+    
+    <div class="container">
+    
+        <hr />
+<div class="nav-dropdown-arrow">
+    <div>
+        
+
+<ol class="breadcrumb" vocab="http://schema.org" typeof="BreadcrumbList">
+    
+    
+        
+        
+        
+        <li property="itemListElement" typeof="ListItem" class="">
+            <a href="/ev3dev.github.io/docs/" property="item" typeof="WebPage">
+                <span property="name">docs</span>
+            </a>
+            <meta property="position" content="1">
+        </li>
+        
+    
+        
+        
+        
+        <li property="itemListElement" typeof="ListItem" class="">
+            <a href="/ev3dev.github.io/docs/tutorials/" property="item" typeof="WebPage">
+                <span property="name">tutorials</span>
+            </a>
+            <meta property="position" content="2">
+        </li>
+        
+    
+        
+        
+        
+        <li property="itemListElement" typeof="ListItem" class="active">
+            <span href="/ev3dev.github.io/docs/tutorials/" property="item" typeof="WebPage">
+                <span property="name">setting-up-python-pycharm</span>
+            </span>
+            <meta property="position" content="3">
+        </li>
+        
+    
+</ol>
+    </div>
+    
+</div>
+<hr />
+
+<ul id="markdown-toc">
+  <li><a href="#log-in-to-ev3dev" id="markdown-toc-log-in-to-ev3dev">Log in to ev3dev</a></li>
+  <li><a href="#set-up-development-environment" id="markdown-toc-set-up-development-environment">Set up development environment</a></li>
+  <li><a href="#on-to-pycharm" id="markdown-toc-on-to-pycharm">On to PyCharm</a></li>
+  <li><a href="#running-the-code" id="markdown-toc-running-the-code">Running the code</a></li>
+  <li><a href="#installing-ev3dev-python-on-the-development-machine" id="markdown-toc-installing-ev3dev-python-on-the-development-machine">Installing ev3dev-python on the development machine</a></li>
+  <li><a href="#using-the-power-of-the-ide" id="markdown-toc-using-the-power-of-the-ide">Using the power of the IDE</a></li>
+</ul>
+
+<p class="lead">This tutorial shows how to set up a nice working environment for developing
+Python on Ev3dev. The platform used is a BrickPi, but most of it is usable
+for regular LEGO EV3 bricks.</p>
+
+<p>Ev3dev is a lean and modern system to run on the Raspberry Pi that powers the
+BrickPi. It’s got multiple languages that work in a pretty similar way and
+make switching easy. Moreover, if you code in ev3dev on the BrickPi, people
+with a regular EV3 and Ev3dev will be able to run your code! Alas, it doesn’t
+work the other way around as the BrickPi has a more limited set of motor
+commands.</p>
+
+<p>For this tutorial, I will suppose you have burned an SD disk, connected your
+RPi and BrickPi to an ethernet cable and booted it. If you have an EV3 brick
+without ethernet, <a href="/ev3dev.github.io/docs/tutorials">set up another networking connection first</a>.</p>
+
+<h2 id="log-in-to-ev3dev">Log in to ev3dev</h2>
+
+<p>Now you can either attach a screen and keyboard to it for the setup, or
+connect to it via ssh. I prefer the latter. My router has a DNS that registers
+hostnames. It allows me to start a Terminal (on Mac) or Putty (on Windows) and
+simply do:</p>
+
+<p><code class="highlighter-rouge">ssh robot@ev3dev</code></p>
+
+<p>If you don’t have a DNS try: <code class="highlighter-rouge">robot@ev3dev.local</code> or connect to it’s IP
+address directly. eg. <code class="highlighter-rouge">robot@192.168.0.2</code></p>
+
+<p>The password is <code class="highlighter-rouge">maker</code> by default. If you used screen and keyboard, you’re
+automatically logged in.</p>
+
+<p>##Configure the right BrickPi##</p>
+
+<p>You’re logged in to the command line. Cool! This step will activate the
+BrickPi. Skip it if you have a normal EV3. Now several Mindstorms shields
+are available for the RPi, we have to setup the right one first. That is,
+if you haven’t done so already after burning the image. For this go:</p>
+
+<p><code class="highlighter-rouge">sudo nano /boot/flash/config.txt</code> (the password is still <code class="highlighter-rouge">maker</code>)
+Scroll down and uncomment the appropriate lines for your hardware.</p>
+
+<p class="alert alert-info"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+I have multiple Raspberry Pis and Mindstorms brains. I like to keep
+them apart on the network by giving them separate names. I renamed mine like
+this:<br /><code class="highlighter-rouge">sudo hostnamectl set-hostname ev3dev-rpi</code></p>
+
+<p>Finally do <code class="highlighter-rouge">sudo reboot</code>.</p>
+
+<h2 id="set-up-development-environment">Set up development environment</h2>
+
+<p>I prefer to have a passwordless ssh to the robot. For this I <a href="https://www.raspberrypi.org/documentation/linux/usage/users.md">add a user with
+the same login name as on my development computer.</a> Remember to give
+yourself sudo rights as explained on that same page. After adding that user,
+you can <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md">set up passwordless ssh</a>.</p>
+
+<p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+This doesn’t matter on BrickPi, but on robots with a screen, you will <em>not</em> be
+able to launch programs using the Brickman interface. For this, you <em>must</em> use
+the <code class="highlighter-rouge">robot</code> user! Only set up your own user account if you really know what you
+are doing.</p>
+
+<p>With passwordless ssh and the same username on the ev3dev machine, you can go
+<code class="highlighter-rouge">ssh ev3dev</code> and you’re in!</p>
+
+<p>Next we need a versioning system. That’s a tool for tracking changes you made
+to your code. Coincidentally the same tool is also very handy for transferring
+code between computers or sharing it on the web. There are several, but I
+prefer git. It’s not installed by default so you have to do:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+</code></pre>
+</div>
+
+<p>Now let’s make a new project using our versioning system. Just type:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir myproject.git
+git init --bare myproject.git
+mkdir myproject
+</code></pre>
+</div>
+
+<p>Yay! Git is initialised in the new folder we created. We have a new project
+repository. Now we can clone this repository on our development machine, but
+first we need to do a little more configuring, to automatically deploy our
+code when we push it back to the ev3dev brick.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nano myproject.git/hooks/post-receive
+</code></pre>
+</div>
+
+<p>add these lines. If you created a user with your own name, replace <code class="highlighter-rouge">robot</code>
+with that name:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+git --work-tree<span class="o">=</span>/home/robot/myproject --git-dir<span class="o">=</span>/home/robot/myproject.git checkout -f
+</code></pre>
+</div>
+
+<p>and finally do:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>chmod +x myproject.git/hooks/post-receive
+</code></pre>
+</div>
+
+<h2 id="on-to-pycharm">On to PyCharm</h2>
+
+<p>Now typing code in nano is fine, but it’s much nicer to do it inside a real
+IDE (Integrated Development Environment). There are many, like Visual Studio,
+Eclipse and PyCharm. My favourite is <a href="https://www.jetbrains.com/pycharm/">PyCharm Community Edition</a>.
+So go grab a copy of that one and start it on your development machine.</p>
+
+<p><span class="screenshot"><a href="/ev3dev.github.io/images/osx/PyCharm/welcome.png"><img src="/ev3dev.github.io/images/osx/PyCharm/welcome.png" class="img-responsive" alt="screenshot" /></a></span></p>
+
+<p>What we are going to do now is make a clone of our project on the ev3dev
+machine to start working on it on the development machine.
+In the Welcome dialog choose: ‘Checkout from version control’ &gt; ‘Git’
+Now type the hostname of the ev3dev machine, followed by a semicolon the
+projectname. In the other fields choose a nice parent and project directory.
+(You might have to add <code class="highlighter-rouge">.local</code> after <code class="highlighter-rouge">ev3dev</code> depending on your DNS setup.)</p>
+
+<p><span class="screenshot"><a href="/ev3dev.github.io/images/osx/PyCharm/clone-repo.png"><img src="/ev3dev.github.io/images/osx/PyCharm/clone-repo.png" class="img-responsive" alt="screenshot" /></a></span></p>
+
+<p>When all goes well you get a new window with your fresh empty project. If the
+‘testing’ dialog stays on screen for a long time, it might be that your
+PyCharm master password is needed for your PyCharm password storage. Cancel
+the checkout, type the master password and try again.</p>
+
+<p>So let’s add some code. Right click on the ‘myproject’ folder in the left
+column and choose new &gt; python file. Name it <code class="highlighter-rouge">run_motor</code>. PyCharm will ask
+if you want to add it to Git. That’s nice! Of course we want that.</p>
+
+<p>Now add the following code:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">ev3dev.auto</span> <span class="kn">import</span> <span class="n">OUTPUT_A</span><span class="p">,</span> <span class="n">Motor</span> 
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">OUTPUT_A</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">run_forever</span><span class="p">(</span><span class="n">duty_cycle_sp</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></code></pre></figure>
+
+<p>When you’re done press cmd-k or choose VCS &gt; Commit Changes…</p>
+
+<p>The commit message is box describing the changes you made to your code. That’s
+handy later on when you do a lot of changes. For now type: <code class="highlighter-rouge">first commit</code>.
+Then go over the commit button and choose “commit and push” from the dropdown.
+In the next dialog click make sure to select the “alternative branch checkbox”
+and click “Push”. Voila! Our code has arrived on the ev3dev brick. Let’s take
+a look.</p>
+
+<h2 id="running-the-code">Running the code</h2>
+
+<p>It’s time to let the first motor run. Plug it into port A on your brick and
+ssh to your ev3dev brick. Maybe you have the terminal still open.</p>
+
+<p>Now go</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd myproject
+python run_motor.py
+</code></pre>
+</div>
+
+<p>Tataaa! The motor is running full power for a second.</p>
+
+<h2 id="installing-ev3dev-python-on-the-development-machine">Installing ev3dev-python on the development machine</h2>
+
+<p>Back to the development machine. Maybe you noticed a problem: PyCharm puts
+red curly lines under the ev3dev library.</p>
+
+<p><span class="screenshot"><a href="/ev3dev.github.io/images/osx/PyCharm/missing-lib.png"><img src="/ev3dev.github.io/images/osx/PyCharm/missing-lib.png" class="img-responsive" alt="screenshot" /></a></span></p>
+
+<p>And that’s logical, because the ev3dev library is missing on the development
+machine. If we install it we won’t be able to run motors, but the documentation
+and autocomplete will be active. So on your development machine start a
+terminal and do:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git clone https://github.com/rhempel/ev3dev-lang-python.git
+python ev3dev-lang-python/setup.py install
+rm -r ev3dev-lang-python/ # Optional to remove the downloaded files. It's installed now anyway.
+</code></pre>
+</div>
+
+<h2 id="using-the-power-of-the-ide">Using the power of the IDE</h2>
+
+<p>With the IDE (PyCharm) set up and the library installed you can code much
+faster. PyCharm will highlight most coding errors and typos. It will also
+suggest to autocomplete your code and show documentation. You can start
+typing <code class="highlighter-rouge">m.</code> and pycharm will suggest all possible methods and properties.
+Choose one. Now you can put your cursor inside the property and press F1 to
+see the docs. Or press cmd-down arrow to look inside the library where this
+property is defined. Neat huh? Happy coding.</p>
+
+
+
+
+
+<h2> Authors </h2>
+
+
+<div style="float: left; margin-right: 20px;"><!-- Provides unofficial GitHub card function for include.author variable -->
+
+
+
+
+<!-- first function does not work and truncate function returns trailing "..." -->
+
+<!-- this looks weird, but it was the only way I could figure out how to test
+     that the first character of include.author is "@" -->
+
+    <div class="user-card user-card-light" data-card-user="antonvh"><div class="user-card-name">@antonvh</div></div><br/>
+</div>
+
+
+    
+    </div>
+    
+    <div id="footer">
+
+        <div class="cclicense">
+    
+            <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">
+                www.ev3dev.org (with the exception of the projects pages)
+            </span>
+            is licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                <img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" />
+            </a>.
+            <br />
+            You are free to copy the text and images, but please be courteous and acknowledge the source.
+    
+        </div>
+
+    <br />
+    <div class="container">
+        <span>
+            Project maintained by <a href="https://github.com/rhempel">Ralph Hempel</a>
+            and <a href="https://github.com/dlech">David Lechner</a>, with help from the community
+        </span>
+    </div>
+</div>
+
+    
+
+<!-- Custom styles -->
+<link rel="stylesheet" href="/ev3dev.github.io/stylesheets/search.css">
+<link rel="stylesheet" href="/ev3dev.github.io/stylesheets/page-content.css">
+<link rel="stylesheet" href="/ev3dev.github.io/stylesheets/user-cards.css">
+<link rel="stylesheet" href="/ev3dev.github.io/stylesheets/tabs.css">
+
+<!-- Python code highlighting -->
+<link rel="stylesheet" href="/ev3dev.github.io/stylesheets/pygments/monokai.css" />
+
+<!-- 3rd-party libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="/ev3dev.github.io/javascripts/bootstrap/bootstrap.min.js"></script>
+<script src="/ev3dev.github.io/javascripts/jquery.getUrlParam.js"></script>
+<script src="/ev3dev.github.io/javascripts/jquery.loadTemplate-1.4.4.min.js"></script>
+<script src="/ev3dev.github.io/javascripts/respond.js"></script>
+<script src="/ev3dev.github.io/javascripts/ua-parser.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+
+
+<!-- Caches data from requests to API endpoints -->
+<script src="/ev3dev.github.io/javascripts/api-cache.js"></script>
+<!-- Loads user-cards from GH API -->
+<script src="/ev3dev.github.io/javascripts/cards.js"></script>
+<!-- Configures special anchors to link to the most recent ev3dev release -->
+<script src="/ev3dev.github.io/javascripts/releases.js"></script>
+<!-- Responds to queries typed into the "Quick nav" box -->
+<script src="/ev3dev.github.io/javascripts/search.js"></script>
+<!-- Converts static descriptors of tab target content into live text and links -->
+<script src="/ev3dev.github.io/javascripts/tabs.js"></script>
+<!-- Adds classes and other styles to pages where hard-coded css can't be used -->
+<script src="/ev3dev.github.io/javascripts/style-helpers.js"></script>
+</body>
+</html>
+
